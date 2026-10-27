@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Reuben Dyer's engineering portfolio showcasing mechanical design, robotics, FPGA development and machine learning.">
 
-  <title>Engineering Portfolio</title>
+  <title>Reuben Dyer | Engineering Portfolio</title>
 
   <style>
     :root {
@@ -15,18 +17,27 @@
       --accent: #64c8f4;
       --text: #ecf2fa;
       --muted: #a8b7c9;
+      --border: #304258;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       background: var(--navy);
       color: var(--text);
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
     }
 
     nav {
@@ -34,68 +45,175 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      gap: 16px;
       padding: 20px 7%;
-      border-bottom: 1px solid #304258;
+      border-bottom: 1px solid var(--border);
+      background: var(--navy);
     }
 
-    nav a {
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
       color: var(--text);
       text-decoration: none;
-      margin-left: 20px;
     }
 
-    nav a:hover { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
     main {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
       padding: 0 24px;
     }
 
-    section { padding: 65px 0; }
-
-    .hero { padding: 110px 0 80px; }
-
-    h1 {
-      font-size: clamp(36px, 6vw, 60px);
-      line-height: 1.2;
-      margin: 12px 0;
+    section {
+      padding: 65px 0;
     }
 
-    h2 { font-size: 30px; }
+    .hero {
+      padding: 110px 0 85px;
+      max-width: 850px;
+    }
 
-    h3 { margin-top: 0; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-    p { color: var(--muted); }
+    h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.15;
+      margin: 16px 0 24px;
+    }
 
-    .accent { color: var(--accent); }
+    h2 {
+      font-size: 32px;
+      margin: 0 0 16px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 720px;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
 
     .button {
       display: inline-block;
       background: var(--accent);
       color: var(--navy);
-      padding: 12px 22px;
+      padding: 12px 24px;
       margin: 15px 12px 0 0;
+      border: 1px solid var(--accent);
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #94ddff;
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .button-outline:hover {
+      background: #203d55;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 32px;
     }
 
     .projects {
       display: grid;
       grid-template-columns:
-        repeat(auto-fit, minmax(270px, 1fr));
+        repeat(auto-fit, minmax(290px, 1fr));
       gap: 24px;
     }
 
     .card {
       background: var(--panel);
-      border: 1px solid #304258;
-      padding: 28px;
+      border: 1px solid var(--border);
       border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s,
+                  border-color 0.2s;
     }
 
-    .card p { font-size: 15px; }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .project-image {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      background: #263c54;
+    }
+
+    .card-content {
+      padding: 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-category {
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .tags {
+      margin-top: auto;
+      padding-top: 16px;
+    }
 
     .tag {
       display: inline-block;
@@ -103,35 +221,90 @@
       color: var(--accent);
       border-radius: 5px;
       padding: 5px 10px;
-      margin: 5px 5px 5px 0;
-      font-size: 13px;
+      margin: 4px 4px 4px 0;
+      font-size: 12px;
     }
 
-    .project-link {
+    .skills-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .skill-box h3 {
+      font-size: 18px;
       color: var(--accent);
+    }
+
+    .skill-box p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .contact-links a {
       text-decoration: none;
       font-weight: bold;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid #304258;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
       color: var(--muted);
+      font-size: 13px;
     }
 
-    @media (max-width: 600px) {
-      .hero { padding-top: 65px; }
-      nav a { margin: 5px 12px 5px 0; }
+    @media (max-width: 650px) {
+      nav {
+        padding: 18px 24px;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 70px 0 45px;
+      }
+
+      section {
+        padding: 45px 0;
+      }
+
+      h2 {
+        font-size: 27px;
+      }
+
+      .project-image {
+        height: 210px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- NAVIGATION -->
+
   <nav>
-    <strong>Engineering Portfolio</strong>
-    <div>
+    <a class="logo" href="#">Reuben Dyer</a>
+
+    <div class="nav-links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
@@ -141,8 +314,12 @@
 
   <main>
 
+    <!-- HERO SECTION -->
+
     <section class="hero">
-      <p class="accent">ENGINEERING PORTFOLIO</p>
+      <div class="eyebrow">
+        Engineering Portfolio
+      </div>
 
       <h1>
         Reuben Dyer<br>
@@ -150,20 +327,25 @@
       </h1>
 
       <p>
-        Monash University engineering student
-        with experience in mechanical design,
-        robotics, embedded systems and machine
-        learning.
+        Engineering student at Monash University
+        with practical experience in mechanical
+        design, robotics, FPGA development,
+        embedded systems and machine learning.
       </p>
 
       <a class="button" href="#projects">
-        View My Projects
+        Explore Projects
       </a>
 
-      <a class="button" href="resume.pdf">
+      <a class="button button-outline"
+         href="resume.pdf"
+         target="_blank"
+         rel="noopener noreferrer">
         View Resume
       </a>
     </section>
+
+    <!-- ABOUT SECTION -->
 
     <section id="about">
       <h2>About Me</h2>
@@ -171,156 +353,323 @@
       <p>
         I am an engineering student at Monash
         University with a strong interest in
-        robotics, mechanical design, control
-        systems and embedded technologies.
+        developing practical engineering
+        solutions through mechanical design,
+        electronics and software.
       </p>
 
       <p>
-        My project experience spans CAD design
-        and additive manufacturing, FPGA-based
-        systems, autonomous robotics and
-        machine learning.
+        My project experience includes leading
+        a student team in the development of a
+        robotic system with over 50 custom-designed
+        3D-printed components, implementing real-time
+        image processing on FPGA hardware, and
+        developing machine learning-based
+        autonomous navigation systems.
+      </p>
+
+      <p>
+        I enjoy combining theoretical engineering
+        principles with hands-on design,
+        prototyping and experimentation to solve
+        challenging technical problems.
       </p>
     </section>
 
+    <!-- PROJECTS SECTION -->
+
     <section id="projects">
+      <div class="eyebrow">
+        Selected Engineering Work
+      </div>
+
       <h2>Featured Projects</h2>
+
+      <p class="section-intro">
+        A selection of projects demonstrating
+        my experience in mechanical design,
+        embedded systems, autonomous robotics
+        and software development.
+      </p>
 
       <div class="projects">
 
+        <!-- WARMAN PROJECT -->
+
         <article class="card">
-          <img src="warman.jpg"
-               alt="Warman competition robot"
-               style="width:100%; border-radius:8px;">
-          <h3>Automated Dual Robotic Arm Device</h3>
-          <p class="accent">
-            Warman Design Competition | 2024
-          </p>
 
-          <p>
-            Led a student engineering team in
-            developing a wheeled robotic system
-            with two articulated arms designed
-            to collect and deposit six balls.
-          </p>
+          <img
+            src="warman.jpg"
+            alt="Warman dual robotic arm device"
+            class="project-image"
+            loading="lazy">
 
-          <p>
-            Personally designed over 50 custom
-            components in SolidWorks for
-            3D printing, and contributed to
-            prototyping, assembly and testing.
-          </p>
+          <div class="card-content">
 
-          <div>
-            <span class="tag">SolidWorks</span>
-            <span class="tag">CAD</span>
-            <span class="tag">3D Printing</span>
-            <span class="tag">Arduino</span>
+            <p class="project-category">
+              Mechanical Design | Team Leadership
+            </p>
+
+            <h3>
+              Automated Dual Robotic Arm Device
+            </h3>
+
+            <p>
+              <strong>2024 Warman Design
+              and Build Competition</strong>
+            </p>
+
+            <p>
+              Led a student engineering team
+              in designing, manufacturing and
+              testing a wheeled robotic system
+              featuring two articulated arms
+              and gripping mechanisms.
+            </p>
+
+            <p>
+              Personally designed more than
+              50 custom mechanical components
+              using SolidWorks for 3D printing.
+              The robot was developed to collect,
+              transport and deposit six balls
+              into a designated chute.
+            </p>
+
+            <div class="tags">
+              <span class="tag">SolidWorks</span>
+              <span class="tag">CAD</span>
+              <span class="tag">3D Printing</span>
+              <span class="tag">Arduino</span>
+              <span class="tag">Robotics</span>
+            </div>
+
           </div>
         </article>
 
+        <!-- FPGA PROJECT -->
+
         <article class="card">
-          <h3>Real-Time FPGA Camera System</h3>
-          <p class="accent">
-            Embedded Systems & Image Processing
-          </p>
 
-          <p>
-            Designed a dual-processor Nios II
-            system on an FPGA to capture video
-            from an ESP-CAM, buffer frames in
-            SDRAM and display output over VGA.
-          </p>
+          <img
+            src="setup.png"
+            alt="FPGA real-time camera system"
+            class="project-image"
+            loading="lazy">
 
-          <p>
-            Implemented convolution-based image
-            filters in C and upgraded the video
-            pipeline from greyscale to RGB444
-            colour output.
-          </p>
+          <div class="card-content">
 
-          <div>
-            <span class="tag">FPGA</span>
-            <span class="tag">Verilog</span>
-            <span class="tag">C</span>
-            <span class="tag">Nios II</span>
+            <p class="project-category">
+              Embedded Systems | Digital Design
+            </p>
+
+            <h3>
+              Real-Time FPGA Camera and
+              Image Processing System
+            </h3>
+
+            <p>
+              Developed a real-time video
+              processing system using a
+              DE10-Lite FPGA and an ESP32
+              camera module.
+            </p>
+
+            <p>
+              Implemented a three-processor
+              Nios II architecture supporting
+              camera acquisition, image
+              processing and convolution-based
+              edge detection.
+            </p>
+
+            <p>
+              Integrated SDRAM frame buffering,
+              VGA display and RGB444 colour
+              output, with selectable image
+              filtering and display modes.
+            </p>
+
+            <div class="tags">
+              <span class="tag">FPGA</span>
+              <span class="tag">Verilog</span>
+              <span class="tag">C</span>
+              <span class="tag">Nios II</span>
+              <span class="tag">SDRAM</span>
+              <span class="tag">VGA</span>
+            </div>
+
           </div>
         </article>
 
+        <!-- SPHERO PROJECT -->
+
         <article class="card">
-          <h3>Autonomous Robot Navigation</h3>
-          <p class="accent">
-            Robotics & Machine Learning
-          </p>
 
-          <p>
-            Developed an autonomous Sphero
-            navigation system integrating a
-            trained neural network policy,
-            feedback control and path planning.
-          </p>
+          <img
+            src="robot.png"
+            alt="Sphero autonomous navigation robot"
+            class="project-image"
+            loading="lazy">
 
-          <p>
-            Applied PID control, Extended
-            Kalman Filtering and A* path
-            planning, with iterative testing
-            in simulation and on physical
-            hardware.
-          </p>
+          <div class="card-content">
 
-          <div>
-            <span class="tag">Python</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">PID</span>
-            <span class="tag">EKF</span>
-            <span class="tag">A*</span>
+            <p class="project-category">
+              Robotics | Machine Learning
+            </p>
+
+            <h3>
+              Autonomous Robot Navigation
+              and Control System
+            </h3>
+
+            <p>
+              Developed an autonomous
+              navigation system for a Sphero
+              robot capable of navigating
+              complex maze environments.
+            </p>
+
+            <p>
+              Integrated a trained neural
+              network navigation policy with
+              classical robotics algorithms,
+              including PID feedback control,
+              Extended Kalman Filtering and
+              A* path planning.
+            </p>
+
+            <p>
+              Implemented collision recovery
+              and navigation safety mechanisms,
+              with iterative testing in
+              simulation and physical
+              environments.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">PID Control</span>
+              <span class="tag">EKF</span>
+              <span class="tag">A*</span>
+              <span class="tag">Robotics</span>
+            </div>
+
           </div>
         </article>
 
       </div>
     </section>
 
+    <!-- SKILLS SECTION -->
+
     <section id="skills">
+      <div class="eyebrow">
+        Technical Capabilities
+      </div>
+
       <h2>Technical Skills</h2>
 
-      <h3>Programming & Embedded Systems</h3>
-      <p>
-        Python, C, Verilog, Arduino,
-        FPGA development
-      </p>
+      <div class="skills-grid">
 
-      <h3>Mechanical Design</h3>
-      <p>
-        SolidWorks, CAD modelling,
-        3D printing, mechanical prototyping
-      </p>
+        <div class="skill-box">
+          <h3>Programming</h3>
+          <p>
+            Python, C, Verilog,
+            embedded programming,
+            algorithm development
+          </p>
+        </div>
 
-      <h3>Robotics & Machine Learning</h3>
-      <p>
-        PID control, Extended Kalman Filters,
-        path planning, neural networks
-      </p>
+        <div class="skill-box">
+          <h3>Mechanical Design</h3>
+          <p>
+            SolidWorks, 3D CAD modelling,
+            additive manufacturing,
+            mechanical prototyping,
+            assembly and testing
+          </p>
+        </div>
+
+        <div class="skill-box">
+          <h3>Embedded Systems</h3>
+          <p>
+            FPGA development, Nios II,
+            Arduino, SPI communication,
+            VGA interfaces, SDRAM
+          </p>
+        </div>
+
+        <div class="skill-box">
+          <h3>Robotics & Control</h3>
+          <p>
+            PID control, Extended Kalman
+            Filters, autonomous navigation,
+            A* path planning,
+            state estimation
+          </p>
+        </div>
+
+        <div class="skill-box">
+          <h3>Machine Learning</h3>
+          <p>
+            Neural networks, computer vision,
+            machine learning model training,
+            performance evaluation
+          </p>
+        </div>
+
+        <div class="skill-box">
+          <h3>Engineering Practice</h3>
+          <p>
+            Technical problem-solving,
+            design iteration, experimentation,
+            testing, team leadership
+          </p>
+        </div>
+
+      </div>
     </section>
 
+    <!-- CONTACT SECTION -->
+
     <section id="contact">
+      <div class="eyebrow">
+        Get In Touch
+      </div>
+
       <h2>Contact</h2>
 
       <p>
-        Interested in engineering internships
-        and opportunities to apply practical
-        design and technical skills.
+        I am interested in engineering
+        internship opportunities involving
+        robotics, mechanical design,
+        embedded systems and technology
+        development.
       </p>
 
-      <p>
-        Add your email, LinkedIn and GitHub
-        profile links here.
-      </p>
+      <div class="contact-links">
+        <a href="https://github.com/reubendyer1"
+           target="_blank"
+           rel="noopener noreferrer">
+          GitHub
+        </a>
+
+        <a href="resume.pdf"
+           target="_blank"
+           rel="noopener noreferrer">
+          Download Resume
+        </a>
+      </div>
+
     </section>
 
   </main>
 
   <footer>
-    © 2026 Reuben Dyer
+    &copy; 2026 Reuben Dyer |
+    Engineering Portfolio
   </footer>
 
 </body>
