@@ -1,549 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>Engineering Projects | Reuben Dyer</title>
-
-  <style>
-    :root {
-      --background: #101b2d;
-      --panel: #19283d;
-      --accent: #64c8f4;
-      --text: #ecf2fa;
-      --muted: #a8b7c9;
-      --border: #304258;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
-    }
-
-    header {
-      text-align: center;
-      padding: 75px 24px 50px;
-    }
-
-    h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      margin: 0 0 12px;
-    }
-
-    h2 {
-      font-size: 27px;
-      margin: 0 0 16px;
-      line-height: 1.35;
-    }
-
-    h3 {
-      color: var(--accent);
-      font-size: 18px;
-      margin: 30px 0 10px;
-    }
-
-    p {
-      color: var(--muted);
-      margin: 12px 0;
-    }
-
-    .subtitle {
-      max-width: 650px;
-      margin: auto;
-    }
-
-    .accent {
-      color: var(--accent);
-    }
-
-    main {
-      max-width: 1050px;
-      margin: auto;
-      padding: 0 24px 70px;
-    }
-
-    .project {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px;
-      margin-bottom: 40px;
-    }
-
-    .project-number {
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .project-category {
-      color: var(--accent);
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .project-image {
-      display: block;
-      width: 100%;
-      max-height: 500px;
-      object-fit: contain;
-      background: #101b2d;
-      border-radius: 9px;
-      margin: 25px 0;
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-      margin: 25px 0;
-    }
-
-    .image-grid img {
-      width: 100%;
-      height: 290px;
-      object-fit: contain;
-      background: #101b2d;
-      border-radius: 9px;
-    }
-
-    .image-caption {
-      font-size: 13px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #263c54;
-      color: var(--accent);
-      padding: 5px 11px;
-      border-radius: 5px;
-      margin: 5px 5px 5px 0;
-      font-size: 12px;
-    }
-
-    .feature-list {
-      color: var(--muted);
-      padding-left: 22px;
-    }
-
-    .feature-list li {
-      margin-bottom: 10px;
-    }
-
-    video {
-      display: block;
-      width: 100%;
-      max-height: 520px;
-      margin: 25px 0;
-      border-radius: 9px;
-      background: #000;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 650px) {
-      header {
-        padding: 45px 20px 35px;
-      }
-
-      main {
-        padding: 0 14px 40px;
-      }
-
-      .project {
-        padding: 22px;
-        margin-bottom: 24px;
-      }
-
-      h2 {
-        font-size: 23px;
-      }
-
-      .image-grid img {
-        height: 220px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Engineering projects: dual-arm robot, FPGA image processing and autonomous Sphero navigation.">
+<title>Engineering Projects | Reuben Dyer</title>
+<style>
+:root{--bg:#0b1422;--panel:#15243a;--panel2:#1c3049;--text:#f0f5fb;--muted:#afc0d3;--accent:#70d3f9;--stroke:#30445d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,Arial,sans-serif}a{color:var(--accent)}
+header{max-width:1120px;margin:auto;padding:70px 24px 32px}h1{font-size:clamp(34px,5vw,56px);letter-spacing:-.035em;line-height:1.1;margin:0 0 12px}h2{font-size:clamp(25px,3vw,35px);line-height:1.25;margin:0 0 12px}h3{font-size:20px;color:var(--accent);margin:32px 0 10px}h4{font-size:16px;margin:0 0 8px}p,li{color:var(--muted)}.subtitle{margin:0}.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.nav a{border:1px solid var(--stroke);border-radius:999px;padding:8px 15px;text-decoration:none;color:var(--text);font-size:13px}.nav a:hover{border-color:var(--accent);color:var(--accent)}main{max-width:1120px;margin:auto;padding:0 24px 60px}.project{padding:38px;margin:18px 0 38px;background:var(--panel);border:1px solid var(--stroke);border-radius:16px}.eyebrow{color:var(--accent);font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:2px}.subtitle2{color:var(--accent);margin-top:0}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 24px}.tag{padding:4px 10px;border-radius:5px;background:var(--panel2);color:var(--accent);font-size:12px}.heroimg{width:100%;max-height:480px;object-fit:contain;background:#0a1421;border-radius:9px;margin:14px 0 4px}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}.gallery figure{margin:0}.gallery img{display:block;width:100%;height:260px;object-fit:contain;background:#0a1421;border-radius:8px}figcaption{color:var(--muted);font-size:12px;text-align:center;padding:8px}.features{padding-left:20px}.features li{margin:8px 0}.technical-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}.mini{padding:18px;background:var(--panel2);border:1px solid var(--stroke);border-radius:10px}.mini p{margin:0;font-size:14px}.pipeline{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin:18px 0}.step{flex:1 1 145px;text-align:center;background:var(--panel2);border:1px solid var(--stroke);padding:15px 10px;border-radius:9px;font-size:13px;color:var(--text)}.flowarrow{align-self:center;color:var(--accent);font-weight:800}video{width:100%;max-height:520px;background:#000;border-radius:10px;margin-top:16px}.note{border-left:3px solid var(--accent);padding:10px 16px;background:#12273d;border-radius:0 8px 8px 0;color:var(--muted);font-size:14px}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}.metric{background:var(--panel2);border-radius:9px;padding:16px}.metric strong{display:block;font-size:24px;color:var(--accent)}.metric small{color:var(--muted)}footer{text-align:center;color:var(--muted);border-top:1px solid var(--stroke);padding:28px}@media(max-width:650px){header{padding:42px 16px 26px}main{padding:0 12px 40px}.project{padding:22px 17px}.gallery img{height:220px}.flowarrow{display:none}}
+</style>
 </head>
-
 <body>
-
-  <header>
-    <h1>Engineering <span class="accent">Projects</span></h1>
-
-    <p class="subtitle">
-      Mechanical Design | Embedded Systems |
-      Robotics | Machine Learning
-    </p>
-  </header>
-
-  <main>
-
-    <!-- PROJECT 1: WARMAN ROBOT -->
-
-    <section class="project" id="warman">
-
-      <div class="project-number">PROJECT 01</div>
-
-      <h2>Automated Dual Robotic Arm Device</h2>
-
-      <p class="project-category">
-        2024 Warman Design and Build Competition
-      </p>
-
-      <div>
-        <span class="tag">SolidWorks</span>
-        <span class="tag">Mechanical Design</span>
-        <span class="tag">3D Printing</span>
-        <span class="tag">Arduino</span>
-        <span class="tag">Robotics</span>
-      </div>
-
-      <img
-        src="warman.jpg"
-        alt="Warman competition robot"
-        class="project-image"
-        loading="lazy">
-
-      <h3>Project Overview</h3>
-
-      <p>
-        Led a student engineering team in
-        developing a robotic device for the
-        2024 Warman Design and Build Competition.
-        The system featured a wheeled mobile
-        platform with two large articulated
-        robotic arms designed to collect,
-        transport and deposit six balls into
-        a designated chute.
-      </p>
-
-      <h3>Mechanical Design and Manufacturing</h3>
-
-      <p>
-        Personally designed more than 50 unique
-        mechanical components using SolidWorks,
-        which were manufactured through
-        3D printing and integrated into
-        the robotic assembly.
-      </p>
-
-      <p>
-        The mechanical system incorporated
-        articulated arm assemblies and
-        gripping mechanisms to manipulate
-        the balls during collection
-        and depositing operations.
-      </p>
-
-      <div class="image-grid">
-
-        <div>
-          <img
-            src="compacted_cad.png"
-            alt="Compact robotic arm CAD assembly"
-            loading="lazy">
-          <p class="image-caption">
-            Compact robotic arm configuration
-          </p>
-        </div>
-
-        <div>
-          <img
-            src="extended_cad.png"
-            alt="Extended robotic arm CAD assembly"
-            loading="lazy">
-          <p class="image-caption">
-            Extended robotic arm configuration
-          </p>
-        </div>
-
-      </div>
-
-      <h3>System Development</h3>
-
-      <ul class="feature-list">
-        <li>
-          Designed and assembled two articulated
-          robotic arms with gripping mechanisms.
-        </li>
-        <li>
-          Integrated an Arduino-based control
-          system with the mechanical platform.
-        </li>
-        <li>
-          Developed a mobile wheeled base for
-          transporting collected objects.
-        </li>
-        <li>
-          Refined mechanical designs through
-          iterative prototyping, assembly
-          and testing.
-        </li>
-        <li>
-          Coordinated design and development
-          activities across the student team.
-        </li>
-      </ul>
-
-    </section>
-
-    <!-- PROJECT 2: FPGA SYSTEM -->
-
-    <section class="project" id="fpga">
-
-      <div class="project-number">PROJECT 02</div>
-
-      <h2>
-        Real-Time FPGA Camera and
-        Image Processing System
-      </h2>
-
-      <p class="project-category">
-        Embedded Systems and Digital Design
-      </p>
-
-      <div>
-        <span class="tag">FPGA</span>
-        <span class="tag">Nios II</span>
-        <span class="tag">C</span>
-        <span class="tag">Verilog</span>
-        <span class="tag">SPI</span>
-        <span class="tag">SDRAM</span>
-        <span class="tag">VGA</span>
-      </div>
-
-      <img
-        src="setup.png"
-        alt="FPGA camera and video processing hardware setup"
-        class="project-image"
-        loading="lazy">
-
-      <h3>Project Overview</h3>
-
-      <p>
-        Developed a real-time image capture
-        and processing system using a DE10-Lite
-        FPGA connected to an ESP32 camera
-        module and VGA monitor.
-      </p>
-
-      <p>
-        The final implementation used three
-        Nios II processors to manage camera
-        communication, image processing
-        and convolution-based edge detection.
-      </p>
-
-      <h3>System Architecture</h3>
-
-      <img
-        src="Real-Time FPGA Image Processing System.png"
-        alt="FPGA image processing system block diagram"
-        class="project-image"
-        loading="lazy">
-
-      <p>
-        Image frames were acquired over SPI
-        and transferred into shared SDRAM.
-        Interrupt-based communication
-        synchronised frame acquisition
-        and image processing between
-        processors.
-      </p>
-
-      <p>
-        A separate convolution processor
-        was introduced to assist with
-        computationally intensive
-        edge detection operations.
-      </p>
-
-      <h3>Image Processing Implementation</h3>
-
-      <ul class="feature-list">
-        <li>
-          Implemented real-time camera
-          capture and frame buffering.
-        </li>
-        <li>
-          Developed image flipping,
-          blurring and Sobel edge
-          detection algorithms.
-        </li>
-        <li>
-          Upgraded the video pipeline
-          from 4-bit greyscale to
-          12-bit RGB444 colour output.
-        </li>
-        <li>
-          Supported single-image
-          320 × 240 display and quad-image
-          160 × 120 display modes.
-        </li>
-        <li>
-          Integrated accelerometer,
-          key and switch inputs
-          for interactive control.
-        </li>
-      </ul>
-
-      <h3>Results and Testing</h3>
-
-      <p>
-        The initial system operated at
-        approximately 1.75 frames per second.
-        Introducing a multi-processor
-        architecture increased raw-image
-        performance to approximately
-        18.9 frames per second.
-      </p>
-
-      <p>
-        The final RGB implementation operated
-        at approximately 15 frames per second
-        for raw-image display, while
-        supporting additional filtering
-        and display functionality.
-      </p>
-
-      <img
-        src="output.png"
-        alt="FPGA image processing output"
-        class="project-image"
-        loading="lazy">
-
-    </section>
-
-    <!-- PROJECT 3: SPHERO -->
-
-    <section class="project" id="sphero">
-
-      <div class="project-number">PROJECT 03</div>
-
-      <h2>
-        Autonomous Robot Navigation
-        and Control System
-      </h2>
-
-      <p class="project-category">
-        Robotics, Control Systems and Machine Learning
-      </p>
-
-      <div>
-        <span class="tag">Python</span>
-        <span class="tag">Machine Learning</span>
-        <span class="tag">PID Control</span>
-        <span class="tag">EKF</span>
-        <span class="tag">A* Path Planning</span>
-      </div>
-
-      <img
-        src="robot.png"
-        alt="Sphero autonomous navigation robot"
-        class="project-image"
-        loading="lazy">
-
-      <h3>Project Overview</h3>
-
-      <p>
-        Developed an autonomous navigation
-        and control system for a Sphero
-        robot operating in complex
-        maze environments.
-      </p>
-
-      <p>
-        The system combined a trained
-        neural network navigation policy
-        with conventional robotics
-        techniques, including feedback
-        control, state estimation
-        and path planning.
-      </p>
-
-      <h3>Navigation and Control</h3>
-
-      <ul class="feature-list">
-        <li>
-          Trained a machine learning
-          navigation policy to generate
-          robot control actions.
-        </li>
-        <li>
-          Implemented PID control
-          for motion regulation.
-        </li>
-        <li>
-          Applied an Extended Kalman
-          Filter to estimate robot
-          position and velocity.
-        </li>
-        <li>
-          Integrated A* path planning
-          for maze navigation.
-        </li>
-        <li>
-          Developed collision recovery
-          and stall detection mechanisms
-          to improve navigation reliability.
-        </li>
-      </ul>
-
-      <h3>Simulation and Testing</h3>
-
-      <p>
-        Evaluated navigation performance
-        through simulation and physical
-        robot testing, using iterative
-        adjustments to refine control
-        behaviour and improve reliability.
-      </p>
-
-      <video controls preload="metadata">
-        <source
-          src="simulation.mp4"
-          type="video/mp4">
-        Your browser does not support
-        HTML5 video playback.
-      </video>
-
-      <p class="image-caption">
-        Autonomous robot navigation demonstration
-      </p>
-
-    </section>
-
-  </main>
-
-  <footer>
-    Engineering Project Portfolio
-  </footer>
-
+<header>
+<div class="eyebrow">Selected Engineering Work</div>
+<h1>Engineering Projects</h1>
+<p class="subtitle">Mechanical Design · Embedded Systems · Robotics · Machine Learning</p>
+<nav class="nav" aria-label="Projects"><a href="#warman">Dual-Arm Robot</a><a href="#fpga">FPGA Camera</a><a href="#sphero">Sphero Navigation</a></nav>
+</header>
+<main>
+<section class="project" id="warman">
+<div class="eyebrow">Project 01 · 2024 Warman Design and Build Competition</div>
+<h2>Automated Dual Robotic Arm Device</h2>
+<p class="subtitle2">Mechanical design, manufacturing and team leadership</p>
+<div class="tags"><span class="tag">SolidWorks</span><span class="tag">CAD</span><span class="tag">3D Printing</span><span class="tag">Arduino</span><span class="tag">Robotics</span></div>
+<img class="heroimg" src="warman.jpg" alt="Completed Warman competition robot" loading="lazy">
+<h3>Project overview</h3>
+<p>Led a student engineering team to design, manufacture and test a wheeled robotic device for the 2024 Warman competition. Two large articulated arms and gripping mechanisms were used to collect, carry and deposit six balls into a designated chute.</p>
+<h3>Mechanical design and fabrication</h3>
+<p>Personally designed more than 50 unique mechanical components in SolidWorks for 3D printing. The design incorporated articulated arm structures, gripping mechanisms and a mobile base, developed through prototyping and assembly.</p>
+<div class="gallery"><figure><img src="compacted_cad.png" alt="CAD of compacted robotic arms" loading="lazy"><figcaption>Compacted arm configuration</figcaption></figure><figure><img src="extended_cad.png" alt="CAD of extended robotic arms" loading="lazy"><figcaption>Extended arm configuration</figcaption></figure></div>
+<h3>Integration and testing</h3>
+<ul class="features"><li>Integrated Arduino-based control with the robot's arm mechanisms and wheeled platform.</li><li>Coordinated student team responsibilities throughout design, manufacturing and assembly.</li><li>Iteratively refined parts and mechanical arrangements through prototype testing.</li></ul>
+</section>
+<section class="project" id="fpga">
+<div class="eyebrow">Project 02 · Embedded systems</div>
+<h2>Real-Time FPGA Camera and Image Processing System</h2>
+<p class="subtitle2">Multi-processor video acquisition, filtering and VGA output</p>
+<div class="tags"><span class="tag">DE10-Lite FPGA</span><span class="tag">Nios II</span><span class="tag">C</span><span class="tag">Verilog</span><span class="tag">SPI</span><span class="tag">SDRAM</span><span class="tag">VGA</span></div>
+<img class="heroimg" src="setup.png" alt="DE10-Lite FPGA video system hardware" loading="lazy">
+<h3>Project overview</h3>
+<p>Built a live image-processing system that acquires camera frames from an ESP32 camera, stores them in shared SDRAM, processes the image, and displays the result through VGA. The final architecture used three Nios II/f processors with separate responsibilities for SPI communication, image processing/display, and convolution assistance.</p>
+<h3>System architecture</h3>
+<img class="heroimg" src="Real-Time FPGA Image Processing System.png" alt="FPGA image processing system block diagram" loading="lazy">
+<p>Interrupt-based handshaking synchronised acquisition and processing, while a mutex protected shared SDRAM. A third processor was added to assist Sobel edge detection; its polling-based synchronisation limited the potential parallel speedup.</p>
+<h3>Image processing and user control</h3>
+<ul class="features"><li>Implemented image flipping, blurring and Sobel edge detection.</li><li>Upgraded the system from 4-bit greyscale to 12-bit RGB444 display, converting camera RGB565 data.</li><li>Supported a full 320 × 240 image and a quad mode with four 160 × 120 sections.</li><li>Used accelerometer, keys and switches to change processing and display modes.</li></ul>
+<div class="metrics"><div class="metric"><strong>1.75 FPS</strong><small>Initial raw display baseline</small></div><div class="metric"><strong>18.9 FPS</strong><small>Raw display after multiprocessing</small></div><div class="metric"><strong>14.97 FPS</strong><small>Final three-processor raw RGB output</small></div></div>
+<h3>System output</h3>
+<img class="heroimg" src="output.png" alt="FPGA image-processing display output" loading="lazy">
+</section>
+<section class="project" id="sphero">
+<div class="eyebrow">Project 03 · ECE4078 Robotics</div>
+<h2>Autonomous Sphero Robot Navigation and Control</h2>
+<p class="subtitle2">Simulation, robot dynamics, feedback control, state estimation and learning-based navigation</p>
+<div class="tags"><span class="tag">Python</span><span class="tag">Gymnasium-style interface</span><span class="tag">PyTorch</span><span class="tag">PID</span><span class="tag">EKF framework</span><span class="tag">Occupancy grids</span><span class="tag">Planning</span><span class="tag">Sim-to-real</span></div>
+<img class="heroimg" src="robot.png" alt="Sphero robot used for autonomous navigation" loading="lazy">
+<h3>Project overview</h3>
+<p>Developed and investigated an autonomous navigation pipeline for a Sphero robot in simulated and physical maze environments. The project combined robot dynamics, control, localisation, map-based planning and machine learning, with the broader goal of reliable navigation in an unfamiliar race environment.</p>
+<h3>Robot software architecture</h3>
+<div class="pipeline" aria-label="Sphero navigation system pipeline"><div class="step">Robot &amp; simulator<br><small>State, collisions, sensors</small></div><span class="flowarrow">→</span><div class="step">State estimation<br><small>Dynamics / EKF framework</small></div><span class="flowarrow">→</span><div class="step">Navigation<br><small>Mapping / planning / policy</small></div><span class="flowarrow">→</span><div class="step">Control commands<br><small>Speed &amp; heading</small></div></div>
+<p>The simulator and real robot use a similar step-based interface. Observations include measured x/y position, heading, speed and a collision flag. Commands specify desired speed and heading angle, enabling algorithms to be evaluated in simulation before hardware trials.</p>
+<h3>Key technical components</h3>
+<div class="technical-grid">
+<div class="mini"><h4>Robot dynamics &amp; motion control</h4><p>Modelled state transitions for position, heading and speed. Coursework explores PID-based feedback control and the relationship between commanded motion and robot response.</p></div>
+<div class="mini"><h4>State estimation</h4><p>Created an EKF class structure with state prediction, measurement update, and process/measurement covariance matrices. The uploaded EKF file retains placeholder covariance and correction steps.</p></div>
+<div class="mini"><h4>Mapping &amp; path planning</h4><p>Used maze occupancy grids to distinguish free cells from obstacles. The repository provides a waypoint-planning interface, but its uploaded planner returns a fixed example waypoint rather than a complete A* route.</p></div>
+<div class="mini"><h4>Machine learning policy</h4><p>Defined a PyTorch feed-forward policy with four state inputs, a 64-neuron hidden layer with ReLU, and two action outputs. A trained checkpoint and training pipeline were not present in this ZIP.</p></div>
+<div class="mini"><h4>Collision detection</h4><p>The robot interface exposes collision events and diagnostic values derived from acceleration changes, velocity drops and gyroscope spikes, supporting collision-aware navigation and debugging.</p></div>
+<div class="mini"><h4>Simulation and real-world testing</h4><p>Used a common robot/simulator API to support development and evaluation across virtual mazes and physical hardware, with attention to the sim-to-real gap.</p></div>
+</div>
+<h3>Environment and navigation interface</h3>
+<ul class="features"><li><strong>Observations:</strong> x-position, y-position, heading, speed and collision indicator.</li><li><strong>Actions:</strong> commanded speed and heading angle.</li><li><strong>Diagnostics:</strong> odometry, acceleration, gyroscope, collision flags and commanded setpoints.</li><li><strong>Planning environment:</strong> occupancy-grid maps, configurable goals and goal tolerances.</li><li><strong>Project objective:</strong> integrate mapping, planning and control (or a trained policy) for an autonomous race against another robot in an unknown environment.</li></ul>
+<h3>Navigation demonstration</h3>
+<video controls preload="metadata" playsinline><source src="simulation.mp4" type="video/mp4">Your browser does not support MP4 playback.</video>
+<p style="font-size:13px">Simulation footage from the navigation project.</p>
+<div class="note"><strong>Implementation scope:</strong> This description reflects the supplied repository, which includes several teaching scaffolds. If you have a separate completed project controller, trained weights, or performance results, those can be added here to demonstrate your final implementation precisely.</div>
+</section>
+</main>
+<footer>Engineering Project Portfolio</footer>
 </body>
 </html>
